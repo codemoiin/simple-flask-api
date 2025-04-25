@@ -96,6 +96,28 @@ def add_book():
     
     return jsonify(request.get_json())
 
+# Trap endpoints to detect suspicious access
+@app.route('/admin')
+def trap_admin():
+    return jsonify({"trap": "Unauthorized admin access attempt"}), 403
+
+@app.route('/debug')
+def trap_debug():
+    return jsonify({"trap": "Debugging access attempt detected"}), 403
+
+@app.route('/config')
+def trap_config():
+    return jsonify({"trap": "Sensitive config access blocked"}), 403
+
+@app.route('/internal')
+def trap_internal():
+    return jsonify({"trap": "Attempted access to internal API"}), 403
+
+@app.route('/logs')
+def trap_logs():
+    return jsonify({"trap": "Log file access forbidden"}), 403
+
+
 
 # A method that runs the application server.
 if __name__ == "__main__":
