@@ -98,15 +98,14 @@ def add_book():
 @app.route('/admin')
 def trap_admin():
     if request.remote_addr != TRAP_LISTENER_IP:
-        return jsonify({"trap": "Unauthorized admin access attempt"}), 403
-    return jsonify({"msg": "Accessed /admin trap successfully"}), 200
+     return jsonify({"msg": "Accessed /admin trap successfully"}), 200
 
 
 @app.route('/debug')
 def trap_debug():
     if request.remote_addr != TRAP_LISTENER_IP:
-        return jsonify({"trap": "Debugging access attempt detected"}), 403
-    return jsonify({"msg": "Accessed /debug trap successfully"}), 200
+      return jsonify({"msg": "Accessed /debug trap successfully"}), 200
+    return jsonify({"trap": "Debugging access attempt detected"}), 403
 
 
 @app.route('/config')
@@ -126,9 +125,8 @@ def trap_internal():
 @app.route('/logs')
 def trap_logs():
     if request.remote_addr != TRAP_LISTENER_IP:
-        return jsonify({"trap": "Log file access forbidden"}), 403
-    return jsonify({"msg": "Accessed /logs trap successfully"}), 200
-
+       return jsonify({"msg": "Accessed /logs trap successfully"}), 200
+    return jsonify({"trap": "Log file access forbidden"}), 403
 
 if __name__ == "__main__":
     app.run(debug=False, threaded=True, port=5000)
